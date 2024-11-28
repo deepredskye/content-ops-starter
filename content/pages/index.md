@@ -58,8 +58,11 @@ sections:
       color: text-dark
     subtitle: Be in good company
     text: |+
+      ```
       <!DOCTYPE html>
+      ```
 
+      ```
       <html lang="en">
       <head>
           <meta charset="UTF-8">
@@ -99,68 +102,84 @@ sections:
           </style>
       </head>
       <body>
+      ```
 
+      ```
       <div class="container">
           <h2>Gold Generator from Dice Rolls</h2>
           <p>Enter the number of dice rolls:</p>
           <input type="number" id="numRolls" min="1" placeholder="Number of rolls">
-          
-          <label for="noBunraku">No Bunraku</label>
-          <input type="checkbox" id="noBunraku">
-          
-          <label for="otafukuMask">Otafuku Mask</label>
-          <input type="checkbox" id="otafukuMask">
-          
-          <button onclick="calculateGold()">Calculate Gold</button>
+      ```
 
-          <div class="result" id="result"></div>
+      ```
+      <label for="noBunraku">No Bunraku</label>
+      <input type="checkbox" id="noBunraku">
 
+      <label for="otafukuMask">Otafuku Mask</label>
+      <input type="checkbox" id="otafukuMask">
+
+      <button onclick="calculateGold()">Calculate Gold</button>
+
+      <div class="result" id="result"></div>
+      ```
+
+      ```
       </div>
+      ```
 
-      \<script>
-          async function calculateGold() {
-              // Get the number of rolls and checkbox states
-              const numRolls = parseInt(document.getElementById('numRolls').value);
-              const isNoBunraku = document.getElementById('noBunraku').checked;
-              const isOtafukuMask = document.getElementById('otafukuMask').checked;
+      ```
+      <script>
+      async function calculateGold() {
+      // Get the number of rolls and checkbox states
+      const numRolls = parseInt(document.getElementById('numRolls').value);
+      const isNoBunraku = document.getElementById('noBunraku').checked;
+      const isOtafukuMask = document.getElementById('otafukuMask').checked;
+      ```
 
-              // If input is invalid or less than 1, display an error message
-              if (isNaN(numRolls) || numRolls < 1) {
-                  document.getElementById('result').textContent = 'Please enter a valid number greater than 0.';
-                  return;
-              }
-
-              // Prepare the request payload
-              const payload = {
-                  numRolls: numRolls,
-                  noBunraku: isNoBunraku,
-                  otafukuMask: isOtafukuMask
-              };
-
-              try {
-                  // Send request to Netlify function
-                  const response = await fetch('/.netlify/functions/dice-rolls', {
-                      method: 'POST',
-                      headers: { 'Content-Type': 'application/json' },
-                      body: JSON.stringify(payload)
-                  });
-
-                  const result = await response.json();
-
-                  // Display the result
-                  if (response.ok) {
-                      document.getElementById('result').textContent = \`Total gold from ${numRolls} rolls: ${result.totalGold}\`;
-                  } else {
-                      document.getElementById('result').textContent = result.error || 'Error occurred.';
-                  }
-              } catch (error) {
-                  document.getElementById('result').textContent = 'Error occurred while processing your request.';
-              }
+      ```
+          // If input is invalid or less than 1, display an error message
+          if (isNaN(numRolls) || numRolls < 1) {
+              document.getElementById('result').textContent = 'Please enter a valid number greater than 0.';
+              return;
           }
-      </script>
 
+          // Prepare the request payload
+          const payload = {
+              numRolls: numRolls,
+              noBunraku: isNoBunraku,
+              otafukuMask: isOtafukuMask
+          };
+
+          try {
+              // Send request to Netlify function
+              const response = await fetch('/.netlify/functions/dice-rolls', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify(payload)
+              });
+
+              const result = await response.json();
+
+              // Display the result
+              if (response.ok) {
+                  document.getElementById('result').textContent = \`Total gold from ${numRolls} rolls: ${result.totalGold}\`;
+              } else {
+                  document.getElementById('result').textContent = result.error || 'Error occurred.';
+              }
+          } catch (error) {
+              document.getElementById('result').textContent = 'Error occurred while processing your request.';
+          }
+      }
+      ```
+
+      ```
+      </script>
+      ```
+
+      ```
       </body>
       </html>
+      ```
 
     actions:
       - type: Button
