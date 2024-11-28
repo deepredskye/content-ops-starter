@@ -58,7 +58,8 @@ sections:
       color: text-dark
     subtitle: Be in good company
     text: |+
-      <!DOCTYPE html>
+
+
       <html lang="en">
       <head>
           <meta charset="UTF-8">
